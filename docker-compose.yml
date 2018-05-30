@@ -24,6 +24,6 @@ services:
       - 9000:9000
     restart: always
     volumes:
-      - ./_data/sonarqube/conf/:/opt/sonarqube/conf/
+      - ./sonarqube/conf/:/opt/sonarqube/conf/
       - ./_data/sonarqube/data/:/opt/sonarqube/data/
       - ./_data/sonarqube/extensions/:/opt/sonarqube/extensions/
