@@ -1,7 +1,25 @@
 version: '3'
 services:
+  sonarqube-db:
+    image: postgres:10.4-alpine
+    environment:
+      - POSTGRES_DB=${POSTGRES_DATABASE}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    restart: always
+    volumes:
+      - ./_data/sonarqube-db/postgresql/:/var/lib/postgresql/
+      # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
+      - ./_data/sonarqube-db/postgresql_data/:/var/lib/postgresql/data/
+
   sonarqube:
     image: sonarqube:7.1-alpine
+    depends_on:
+      - sonarqube-db
+    environment:
+      - SONARQUBE_JDBC_USERNAME=${POSTGRES_USER}
+      - SONARQUBE_JDBC_PASSWORD=${POSTGRES_PASSWORD}
+      - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-db:5432/${POSTGRES_DATABASE}
     ports:
       - 9000:9000
     restart: always
