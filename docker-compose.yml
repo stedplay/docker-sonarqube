@@ -1,0 +1,11 @@
+version: '3'
+services:
+  sonarqube:
+    image: sonarqube:7.1-alpine
+    ports:
+      - 9000:9000
+    restart: always
+    volumes:
+      - ./_data/sonarqube/conf/:/opt/sonarqube/conf/
+      - ./_data/sonarqube/data/:/opt/sonarqube/data/
+      - ./_data/sonarqube/extensions/:/opt/sonarqube/extensions/
