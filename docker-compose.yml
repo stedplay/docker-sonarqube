@@ -9,4 +9,3 @@ services:
       - ./_data/sonarqube/conf/:/opt/sonarqube/conf/
       - ./_data/sonarqube/data/:/opt/sonarqube/data/
       - ./_data/sonarqube/extensions/:/opt/sonarqube/extensions/
-      - ./_data/sonarqube/bundled-plugins/:/opt/sonarqube/lib/bundled-plugins/
