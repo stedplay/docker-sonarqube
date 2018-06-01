@@ -12,6 +12,27 @@ services:
       # This needs explicit mapping due to https://github.com/docker-library/postgres/blob/4e48e3228a30763913ece952c611e5e9b95c8759/Dockerfile.template#L52
       - ./_data/sonarqube-db/postgresql_data/:/var/lib/postgresql/data/
 
+  sonarqube-db-backup:
+    build:
+      context: ./sonarqube-db-backup/
+      args:
+        - TZ=${TIME_ZONE}
+    depends_on:
+      - sonarqube-db
+    environment:
+      - DATABASE_HOST=sonarqube-db
+      - DATABASE_NAME=${POSTGRES_DATABASE}
+      - DATABASE_USER=${POSTGRES_USER}
+      - DATABASE_PASSWORD=${POSTGRES_PASSWORD}
+      - GDRIVE_ACCOUNT=${GDRIVE_ACCOUNT}
+      - GDRIVE_SYNC_DST_DIR=${GDRIVE_SYNC_DST_DIR}
+    hostname: sonarqube-db-backup
+    restart: always
+    volumes:
+      - ./sonarqube-db-backup/crontab_root:/etc/crontabs/root
+      - ./sonarqube-db-backup/script/:/opt/script/
+      - ./_data/sonarqube-db-backup/:/var/backup/
+
   sonarqube:
     image: sonarqube:7.1-alpine
     depends_on:
