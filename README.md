@@ -69,7 +69,9 @@ https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner
 
 Run the following command from the project root directory to launch the analysis.
 
+```
 $ sonar-scanner
+```
 
 ### Check result of analyzing
 
