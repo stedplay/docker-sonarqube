@@ -53,7 +53,7 @@ For details, refer to https://docs.sonarqube.org/display/SONAR/Analysis+Paramete
 
 ### Install sonar-scanner
 
-Install sonar-scanner into host OS to analyze the project. (* sonar-scanner need to install JavaVM on the system.)
+Install sonar-scanner into host OS to analyze the project. (* sonar-scanner need to install JavaVM on the system.)
 
 For MacOS, use homebrew.
 
