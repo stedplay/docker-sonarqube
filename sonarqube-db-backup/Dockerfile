@@ -8,7 +8,7 @@ ARG GDRIVE_BIN_PATH=/usr/local/bin/gdrive-linux-x64
 ENV GDRIVE_BIN_PATH=${GDRIVE_BIN_PATH}
 
 # Install packages.
-RUN apk add --update curl postgresql-client=10.4-r0 logrotate=3.13.0-r0 postfix=3.2.4-r1
+RUN apk add --update curl postgresql-client=10.5-r0 logrotate=3.13.0-r0 postfix=3.2.4-r1
 
 # Download gdrive.
 RUN curl -L -o ${GDRIVE_BIN_PATH} ${GDRIVE_DOWNLOAD_URL}
